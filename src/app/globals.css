@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --background: #f6f6f8;
+  --surface: #ffffff;
+  --surface-muted: #f1f1f4;
+  --border: #e3e3e8;
+  --foreground: #17171c;
+  --muted: #6b6b76;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-foreground: #ffffff;
+  --danger: #dc2626;
+  --ring: rgb(79 70 229 / 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --background: #0c0c10;
+    --surface: #15151b;
+    --surface-muted: #1d1d25;
+    --border: #2a2a34;
+    --foreground: #ececf2;
+    --muted: #9b9ba8;
+    --primary: #8b8cf8;
+    --primary-hover: #a5a6fb;
+    --primary-foreground: #0c0c10;
+    --danger: #f87171;
+    --ring: rgb(139 140 248 / 0.4);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-danger: var(--danger);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary-hover;
+  }
+  .btn-secondary {
+    @apply border border-border bg-surface text-foreground hover:bg-surface-muted;
+  }
+  .btn-ghost {
+    @apply text-muted hover:bg-surface-muted hover:text-foreground;
+  }
+  .btn-danger {
+    @apply border border-border bg-surface text-danger hover:bg-red-500/10;
+  }
+  .input {
+    @apply block w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground placeholder:text-muted/70 transition-shadow focus:border-primary focus:outline-none focus:ring-4 focus:ring-ring aria-invalid:border-danger;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-foreground;
+  }
+  .card {
+    @apply rounded-xl border border-border bg-surface;
+  }
+}
